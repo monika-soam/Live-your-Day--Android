@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f7f8fc">
+<title>Live your Day</title><link rel="icon" href="icon.svg"><link rel="apple-touch-icon" href="icon.svg">
+<style>
+:root{--bg:#f7f8fc;--card:#fff;--text:#202536;--muted:#7d8495;--line:#e8eaf0;--accent:#655cff;--green:#25a66f;--danger:#e85b68;--r:18px}.theme-ocean{--bg:#f3f9fb;--card:#fff;--text:#18313a;--muted:#71858c;--line:#dcebed;--accent:#168aa0;--green:#27a978;--danger:#e05b67}.theme-sunset{--bg:#fff8f4;--card:#fff;--text:#33231f;--muted:#927d76;--line:#f0e1da;--accent:#e36b45;--green:#2ba477;--danger:#db5964}.theme-forest{--bg:#f4f8f4;--card:#fff;--text:#203027;--muted:#77847c;--line:#dfe8e0;--accent:#4d8b62;--green:#29986a;--danger:#d95d67}.theme-night{--bg:#151824;--card:#202433;--text:#f4f5fb;--muted:#a4a9b8;--line:#303548;--accent:#8b82ff;--green:#35bb86;--danger:#ed6976}.theme-night .quick{background:#151824ed}.theme-night .nav,.theme-night .item,.theme-night .habit,.theme-night .focus,.theme-night .progress,.theme-night .moment,.theme-night .stat,.theme-night .life,.theme-night .sheet-card,.theme-night .quick-input,.theme-night .field-input{background:var(--card)}.theme-night .icon,.theme-night .small,.theme-night .habit-check{background:#2a2e40;color:#c5cad8}.theme-night .empty{background:var(--card)}.theme-night select{color:var(--text)}
+/* Theme atmospheres: each theme changes color, shape, icon language, motion and a very subtle background illustration. */
+body{position:relative;isolation:isolate;transition:background .45s ease,color .35s ease}
+body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background-position:center top;background-size:cover;background-repeat:no-repeat;opacity:.075;transition:opacity .5s ease,background-image .5s ease}
+body::after{content:"";position:fixed;inset:-20%;z-index:-3;pointer-events:none;background:radial-gradient(circle at 20% 10%,rgba(101,92,255,.10),transparent 28%),radial-gradient(circle at 85% 70%,rgba(162,156,255,.08),transparent 32%);animation:ambientFloat 14s ease-in-out infinite alternate;transform:translateZ(0)}
+.theme-ocean::before{background-image:url("bg-ocean.svg");opacity:.085}.theme-sunset::before{background-image:url("bg-sunset.svg");opacity:.075}.theme-forest::before{background-image:url("bg-forest.svg");opacity:.08}.theme-night::before{background-image:url("bg-night.svg");opacity:.11}
+.theme-ocean::after{background:radial-gradient(circle at 15% 20%,rgba(22,138,160,.16),transparent 27%),radial-gradient(circle at 85% 75%,rgba(73,190,211,.11),transparent 34%);animation:oceanGlow 9s ease-in-out infinite alternate}
+.theme-sunset::after{background:radial-gradient(circle at 70% 15%,rgba(255,159,83,.18),transparent 25%),radial-gradient(circle at 15% 80%,rgba(229,107,69,.10),transparent 34%);animation:sunsetGlow 10s ease-in-out infinite alternate}
+.theme-forest::after{background:radial-gradient(circle at 15% 20%,rgba(77,139,98,.14),transparent 27%),radial-gradient(circle at 85% 75%,rgba(126,181,112,.10),transparent 35%);animation:forestGlow 12s ease-in-out infinite alternate}
+.theme-night::after{background:radial-gradient(circle at 75% 18%,rgba(139,130,255,.18),transparent 24%),radial-gradient(circle at 15% 78%,rgba(64,92,175,.12),transparent 35%);animation:nightGlow 8s ease-in-out infinite alternate}
+@keyframes ambientFloat{from{transform:translate3d(-1%,0,0) scale(1)}to{transform:translate3d(1%,1%,0) scale(1.03)}}
+@keyframes oceanGlow{from{transform:translateY(-1%) scale(1)}to{transform:translateY(1.5%) scale(1.04)}}
+@keyframes sunsetGlow{from{transform:translateX(-1%) scale(1)}to{transform:translateX(2%) scale(1.04)}}
+@keyframes forestGlow{from{transform:translateY(1%) rotate(-.2deg)}to{transform:translateY(-1%) rotate(.2deg)}}
+@keyframes nightGlow{from{opacity:.72;transform:scale(1)}to{opacity:1;transform:scale(1.05)}}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}body{overflow-x:hidden}
+button,input,textarea,select{font:inherit}button{cursor:pointer;border:0}.app{max-width:680px;margin:auto;padding:16px 15px 180px}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px}.brand{font-size:21px;font-weight:800}.avatar{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:#ebe9ff;color:var(--accent);font-weight:800}
+.swipe-wrap{overflow-x:auto;overflow-y:visible;scroll-snap-type:x mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scrollbar-width:none;touch-action:pan-x pan-y}.swipe-wrap::-webkit-scrollbar{display:none}.screens{display:flex;width:100%;transition:none}.screen{width:100%;min-width:100%;padding:0 1px;flex:0 0 100%;scroll-snap-align:start;scroll-snap-stop:always}
+.greeting{font-size:27px;font-weight:800;letter-spacing:-.8px}.date{font-size:13px;color:var(--muted);margin:4px 0 17px}
+.focus{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:15px;margin-bottom:13px}.label{font-size:11px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.09em}.focus-row{display:flex;gap:8px;align-items:center;margin-top:6px}.focus-text{font-size:17px;font-weight:750;flex:1}.small{background:#f0f1f5;color:#70788a;width:34px;height:34px;border-radius:10px}
+.progress{display:flex;gap:10px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:13px;margin-bottom:17px}.bar{height:8px;background:#eceef3;border-radius:99px;flex:1;overflow:hidden}.fill{height:100%;background:var(--accent);border-radius:99px}.progress b{font-size:13px}
+.screen-mic-row{display:flex;justify-content:flex-end;margin:8px 0 3px}.screen-mic{display:inline-flex;align-items:center;gap:7px;background:#eeedff;color:var(--accent);border:1px solid #dfdcff;border-radius:999px;padding:8px 12px;font-size:11px;font-weight:800}.screen-mic .mic-svg{width:16px;height:16px}.screen-mic .mic-svg svg{width:16px;height:16px}.section-head{display:flex;justify-content:space-between;align-items:center;margin:19px 2px 9px}.section-head h2{font-size:17px;margin:0}.section-head button{background:none;color:var(--accent);font-size:13px;font-weight:750}
+.list{display:grid;gap:8px}.item{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;display:flex;align-items:center;gap:10px}.check{width:25px;height:25px;border:2px solid #cdd2dd;border-radius:50%;background:#fff;display:grid;place-items:center;color:#fff;flex:none}.done .check{background:var(--green);border-color:var(--green)}.done .name{text-decoration:line-through;color:#8a90a0}.main{min-width:0;flex:1}.name{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.meta{font-size:11px;color:var(--muted);margin-top:4px}.actions{display:flex;gap:4px}.icon{width:33px;height:33px;border-radius:10px;background:#f2f3f7;color:#697287}
+.empty{background:#fff;border:1px dashed #d9dce5;border-radius:16px;padding:19px;text-align:center;color:var(--muted);font-size:13px}
+.habit{display:flex;align-items:center;background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;gap:10px}.habit .main{flex:1}.streak{font-size:11px;color:var(--muted);margin-top:4px}.habit-check{width:42px;height:42px;border-radius:13px;background:#f0f1f6;color:#747c8e;font-size:18px}.habit-check.done{background:#e7f7ef;color:var(--green)}
+.week{display:flex;gap:6px;margin-top:8px}.day{flex:1;text-align:center;font-size:9px;color:var(--muted)}.dot{width:20px;height:20px;border-radius:50%;background:#eceef3;margin:4px auto 0}.dot.on{background:#b9f0d7}.dot.today{outline:2px solid var(--accent);outline-offset:1px}
+.moments{display:grid;grid-template-columns:1fr 1fr;gap:9px}.moment{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px}.moment-icon{font-size:22px}.moment-title{font-weight:700;margin-top:6px}.moment-time{font-size:10px;color:var(--muted);margin-top:4px}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:15px}.stat b{font-size:25px}.stat span{display:block;color:var(--muted);font-size:11px;margin-top:3px}
+.life{background:#fff;border:1px solid var(--line);border-radius:18px;padding:15px}.life-row{padding:12px 0;border-bottom:1px solid var(--line)}.life-row:last-child{border-bottom:0}.life-date{font-size:10px;color:var(--muted)}.life-title{font-weight:700;margin-top:3px}
+.quick{position:fixed;left:0;right:0;bottom:calc(66px + env(safe-area-inset-bottom));background:#f7f8fceb;backdrop-filter:blur(14px);border-top:1px solid #e0e3eb;padding:9px 13px;z-index:20}.quick-inner{max-width:680px;margin:auto;display:flex;gap:7px}.input-wrap{flex:1;position:relative}.quick-input,.field-input{width:100%;height:48px;border:1px solid var(--line);background:#fff;border-radius:16px;padding:0 47px 0 14px;outline:none;box-shadow:0 5px 16px #2025360c}.quick-input:focus,.field-input:focus{border-color:#aaa5ff}.mic{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:#f0efff;color:var(--accent);display:grid;place-items:center}.mic.active{background:var(--danger);color:#fff;animation:pulse 1.1s infinite}
+.mic-svg{width:20px;height:20px;display:grid;place-items:center}
+.mic-svg svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.mic-stop{font-size:12px;line-height:1}
+.go{width:48px;height:48px;border-radius:16px;background:#202536;color:#fff;font-size:20px}
+@keyframes pulse{50%{box-shadow:0 0 0 8px #e85b6820}}
+.plan-tabs{display:flex;gap:5px;background:var(--card);border:1px solid var(--line);padding:4px;border-radius:15px;margin:12px 0 5px}.plan-tabs button{flex:1;background:none;color:var(--muted);padding:10px 5px;border-radius:11px;font-size:12px;font-weight:800}.plan-tabs button.active{background:#eeedff;color:var(--accent)}.plan-hint{font-size:11px;color:var(--muted);margin:0 3px 12px}.nav{position:fixed;left:0;right:0;bottom:0;display:flex;gap:4px;margin:0;background:#fff;border:1px solid var(--line);padding:5px 8px calc(5px + env(safe-area-inset-bottom));border-radius:18px 18px 0 0;z-index:25;box-shadow:0 -8px 24px #20253612;backdrop-filter:blur(14px);max-width:none}.nav button{flex:1;background:none;padding:9px 4px;border-radius:12px;color:#808799;font-size:10px;font-weight:750}.nav button.active{background:#eeedff;color:var(--accent)}
+.sheet{position:fixed;inset:0;background:#11172566;display:none;align-items:flex-end;z-index:30}.sheet.open{display:flex}.sheet-card{width:100%;max-width:680px;margin:auto auto 0;background:#fff;border-radius:27px 27px 0 0;padding:14px 15px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -12px 35px #0002}.grab{width:42px;height:5px;background:#d8dce5;border-radius:5px;margin:0 auto 16px}.sheet h3{margin:0;font-size:20px}.sub{font-size:12px;color:var(--muted);margin:4px 0 13px}.field{position:relative}.field-input{height:50px}.preview{background:#f6f6fa;border-radius:14px;padding:11px;margin-top:9px;display:none}.preview strong{display:block}.preview small{color:var(--muted)}.sheet-actions{display:flex;gap:8px;margin-top:12px}.sheet-actions button{flex:1;padding:13px;border-radius:13px;font-weight:750}.cancel{background:#f0f1f5}.save{background:var(--accent);color:#fff}
+.theme-btn{width:40px;height:40px;border-radius:50%;background:var(--card);color:var(--accent);border:1px solid var(--line);font-size:20px}.theme-modal{position:fixed;inset:0;background:#11172566;display:none;align-items:flex-end;z-index:40}.theme-modal.open{display:flex}.theme-card{width:100%;max-width:680px;margin:auto auto 0;background:var(--card);color:var(--text);border-radius:27px 27px 0 0;padding:14px 15px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -12px 35px #0002}.theme-card h3{margin:0;font-size:20px}.themes{display:grid;gap:8px;margin-top:14px}.theme-option{display:flex;align-items:center;gap:12px;text-align:left;background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:15px;padding:11px}.theme-option small{display:block;color:var(--muted);font-size:11px;margin-top:2px}.swatch{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;flex:none;color:#fff;font-weight:900;font-size:16px;box-shadow:inset 0 0 0 1px #ffffff35}.sw-default{background:linear-gradient(135deg,#655cff,#a39eff)}.sw-ocean{background:linear-gradient(135deg,#168aa0,#77c9d5)}.sw-sunset{background:linear-gradient(135deg,#e36b45,#f2b35c)}.sw-forest{background:linear-gradient(135deg,#4d8b62,#9bc49e)}.sw-night{background:linear-gradient(135deg,#202433,#8b82ff)}.theme-close{width:100%;margin-top:12px;padding:13px;border-radius:13px;background:var(--accent);color:#fff;font-weight:800}.toast{position:fixed;left:50%;bottom:116px;transform:translate(-50%,15px);background:#202536;color:#fff;padding:10px 14px;border-radius:13px;font-size:12px;opacity:0;transition:.2s;z-index:50;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(min-width:600px){.nav{left:50%;right:auto;transform:translateX(-50%);width:min(650px,100%);border-radius:18px 18px 0 0}}
+
+/* --- Theme-specific UI language --- */
+.nav{transition:background .35s ease,border-color .35s ease,box-shadow .35s ease,transform .25s ease}
+.nav button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:46px;transition:all .25s ease}
+.nav-icon{font-size:18px;line-height:18px;font-weight:800;transition:transform .3s ease,filter .3s ease}
+.nav button.active .nav-icon{transform:translateY(-1px) scale(1.08)}
+.theme-btn{display:grid;place-items:center;overflow:hidden}.theme-glyph{display:block;animation:themeSpin 7s linear infinite}
+.field-theme-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);z-index:2;width:27px;height:27px;border-radius:9px;display:grid;place-items:center;font-size:14px;font-weight:800;background:var(--icon-bg);color:var(--icon-color);transition:all .35s ease}
+.field-input{padding-left:47px}.quick-input{padding-left:47px}.input-wrap .field-theme-icon{left:9px}
+.focus{position:relative;overflow:hidden}.focus::after{content:"";position:absolute;right:-18px;top:-24px;width:90px;height:90px;border-radius:50%;background:var(--theme-orb);opacity:.13;animation:orbFloat 6s ease-in-out infinite alternate;pointer-events:none}
+.label::before{content:var(--label-icon);display:inline-block;margin-right:6px;font-size:12px;transform:translateY(-1px)}
+.section-head h2::before{content:var(--section-icon);display:inline-block;margin-right:7px;font-size:15px;transform:translateY(-1px)}
+.plan-tabs button::before{content:var(--tab-icon);display:inline-block;margin-right:4px}
+.item,.habit,.moment,.stat,.life,.focus,.progress,.empty,.sheet-card,.theme-card,.theme-option{transition:background .35s ease,border-color .35s ease,box-shadow .35s ease,border-radius .35s ease,transform .25s ease}
+.item:hover,.habit:hover,.moment:hover,.stat:hover{transform:translateY(-1px)}
+.check{background:var(--check-bg);border-color:var(--check-border);color:var(--check-color)}
+.dot.on{background:var(--dot-on)}.dot.today{outline-color:var(--accent)}
+.icon{background:var(--icon-bg);color:var(--icon-color)}
+.screen-mic{background:var(--mic-bg);border-color:var(--mic-border);color:var(--accent)}
+.plan-tabs button.active,.nav button.active{background:var(--active-bg);color:var(--accent)}
+.go{background:var(--go-bg);box-shadow:0 8px 20px var(--go-shadow)}
+.quick{background:var(--quick-bg);border-top-color:var(--nav-border)}
+.quick-input,.field-input{background:var(--input-bg);border-color:var(--input-border);box-shadow:0 7px 20px var(--input-shadow)}
+.quick-input:focus,.field-input:focus{border-color:var(--accent);box-shadow:0 0 0 4px var(--focus-ring)}
+.sheet-card{border:1px solid var(--line)}
+.sheet-actions .cancel{background:var(--cancel-bg);color:var(--text)}
+.save,.theme-close{box-shadow:0 8px 18px var(--button-shadow)}
+.theme-option{position:relative;overflow:hidden}.theme-option::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 20%,rgba(255,255,255,.18),transparent 80%);transform:translateX(-110%);animation:optionShine 4.5s ease-in-out infinite;pointer-events:none}.theme-option:nth-child(2)::after{animation-delay:.6s}.theme-option:nth-child(3)::after{animation-delay:1.2s}.theme-option:nth-child(4)::after{animation-delay:1.8s}.theme-option:nth-child(5)::after{animation-delay:2.4s}
+@keyframes optionShine{0%,65%{transform:translateX(-110%)}85%,100%{transform:translateX(110%)}}
+@keyframes themeSpin{0%,85%{transform:rotate(0) scale(1)}92%{transform:rotate(12deg) scale(1.12)}100%{transform:rotate(0) scale(1)}}
+@keyframes orbFloat{from{transform:translate(0,0) scale(1)}to{transform:translate(-9px,8px) scale(1.08)}}
+/* Calm Purple */
+body:not(.theme-ocean):not(.theme-sunset):not(.theme-forest):not(.theme-night){--icon-bg:#eeedff;--icon-color:#655cff;--active-bg:#eeedff;--input-bg:#fff;--input-border:#e8eaf0;--input-shadow:#2025360c;--focus-ring:#655cff18;--mic-bg:#eeedff;--mic-border:#dfdcff;--check-bg:#f2f2fa;--check-border:#cdd2dd;--check-color:#655cff;--dot-on:#c7c4ff;--go-bg:#655cff;--go-shadow:#655cff30;--quick-bg:#f7f8fceb;--nav-border:#e0e3eb;--cancel-bg:#f0f1f5;--button-shadow:#655cff25;--theme-orb:#655cff;--label-icon:'☀';--section-icon:'✦';--tab-icon:'•'}
+/* Ocean: aquarium / bubbles / wave language */
+.theme-ocean{--icon-bg:#e4f6f8;--icon-color:#168aa0;--active-bg:#d9f2f5;--input-bg:#f7fcfd;--input-border:#c9e7eb;--input-shadow:#168aa014;--focus-ring:#168aa020;--mic-bg:#e2f6f8;--mic-border:#b9e1e6;--check-bg:#e9f8fa;--check-border:#a7d9df;--check-color:#168aa0;--dot-on:#b9e9e7;--go-bg:#167f94;--go-shadow:#168aa038;--quick-bg:#f3fafbed;--nav-border:#cfe7ea;--cancel-bg:#e7f2f3;--button-shadow:#168aa030;--theme-orb:#45b8c8;--label-icon:'◉';--section-icon:'🐠';--tab-icon:'≈';border-radius:0}
+.theme-ocean .item,.theme-ocean .habit,.theme-ocean .moment,.theme-ocean .stat,.theme-ocean .life,.theme-ocean .focus,.theme-ocean .progress,.theme-ocean .empty{border-radius:21px}.theme-ocean .field-input,.theme-ocean .quick-input{border-radius:19px}.theme-ocean .nav{border-radius:21px}.theme-ocean .nav-icon{filter:drop-shadow(0 2px 4px #168aa033);animation:oceanBob 3.5s ease-in-out infinite}.theme-ocean .dot.on{background:#8ddedb}.theme-ocean .moment-icon{animation:bubbleFloat 3s ease-in-out infinite}.theme-ocean .swatch{box-shadow:inset 0 0 0 2px #ffffff66}.theme-ocean .go{border-radius:19px}
+@keyframes oceanBob{50%{transform:translateY(-2px)}}@keyframes bubbleFloat{50%{transform:translateY(-4px) rotate(2deg)}}
+/* Sunset: cheerful cartoon / warm rounded language */
+.theme-sunset{--icon-bg:#fff0e9;--icon-color:#e36b45;--active-bg:#ffe8dc;--input-bg:#fffaf7;--input-border:#f2d4c8;--input-shadow:#e36b4514;--focus-ring:#e36b4520;--mic-bg:#fff0e8;--mic-border:#f1cfc1;--check-bg:#fff3ed;--check-border:#e6b9a8;--check-color:#e36b45;--dot-on:#ffd0a7;--go-bg:#d95e3b;--go-shadow:#e36b4538;--quick-bg:#fff8f4ed;--nav-border:#f0d9cf;--cancel-bg:#f5e9e4;--button-shadow:#e36b4530;--theme-orb:#f3a15f;--label-icon:'☀';--section-icon:'🌈';--tab-icon:'☀'}
+.theme-sunset .item,.theme-sunset .habit,.theme-sunset .moment,.theme-sunset .stat,.theme-sunset .life,.theme-sunset .focus,.theme-sunset .progress,.theme-sunset .empty{border-radius:22px;box-shadow:0 7px 20px #e36b4510}.theme-sunset .field-input,.theme-sunset .quick-input{border-radius:20px}.theme-sunset .nav{border-radius:23px}.theme-sunset .nav-icon{animation:sunBounce 3.2s ease-in-out infinite}.theme-sunset .moment-icon{animation:sunWiggle 3.8s ease-in-out infinite}.theme-sunset .screen-mic{border-radius:16px}.theme-sunset .go{border-radius:20px}
+@keyframes sunBounce{50%{transform:translateY(-2px) rotate(3deg)}}@keyframes sunWiggle{50%{transform:rotate(4deg) scale(1.05)}}
+/* Forest: leaves / nature language */
+.theme-forest{--icon-bg:#e8f3e8;--icon-color:#4d8b62;--active-bg:#dfeee0;--input-bg:#f9fcf8;--input-border:#cfdfd1;--input-shadow:#4d8b6212;--focus-ring:#4d8b6220;--mic-bg:#e7f3e8;--mic-border:#c7ddca;--check-bg:#eef7ee;--check-border:#b8d2bc;--check-color:#4d8b62;--dot-on:#b8ddb8;--go-bg:#3f7953;--go-shadow:#4d8b6235;--quick-bg:#f4f8f4ed;--nav-border:#d6e3d8;--cancel-bg:#eaf0ea;--button-shadow:#4d8b6228;--theme-orb:#72a879;--label-icon:'🌿';--section-icon:'🍃';--tab-icon:'•'}
+.theme-forest .item,.theme-forest .habit,.theme-forest .moment,.theme-forest .stat,.theme-forest .life,.theme-forest .focus,.theme-forest .progress,.theme-forest .empty{border-radius:15px}.theme-forest .field-input,.theme-forest .quick-input{border-radius:13px}.theme-forest .nav{border-radius:15px}.theme-forest .nav-icon{animation:leafSway 4.5s ease-in-out infinite}.theme-forest .moment-icon{animation:leafSway 4s ease-in-out infinite}.theme-forest .dot.on{background:#9fce9f}.theme-forest .go{border-radius:14px}
+@keyframes leafSway{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(3deg) translateY(-1px)}}
+/* Night: stars / moon language */
+.theme-night{--icon-bg:#2b3044;--icon-color:#b9b3ff;--active-bg:#32374e;--input-bg:#252a3b;--input-border:#3a4055;--input-shadow:#0008;--focus-ring:#8b82ff30;--mic-bg:#30364d;--mic-border:#454b65;--check-bg:#30364b;--check-border:#50566e;--check-color:#b9b3ff;--dot-on:#555c7b;--go-bg:#8b82ff;--go-shadow:#8b82ff35;--quick-bg:#151824ed;--nav-border:#303548;--cancel-bg:#2c3040;--button-shadow:#8b82ff28;--theme-orb:#8b82ff;--label-icon:'☾';--section-icon:'✦';--tab-icon:'·'}
+.theme-night .item,.theme-night .habit,.theme-night .moment,.theme-night .stat,.theme-night .life,.theme-night .focus,.theme-night .progress,.theme-night .empty{border-radius:18px;box-shadow:0 10px 24px #00020}.theme-night .field-input,.theme-night .quick-input{border-radius:16px}.theme-night .nav{border-radius:19px}.theme-night .nav-icon{animation:starTwinkle 2.8s ease-in-out infinite}.theme-night .moment-icon{animation:starTwinkle 2.4s ease-in-out infinite}.theme-night .go{border-radius:16px}
+@keyframes starTwinkle{50%{transform:scale(1.13);filter:drop-shadow(0 0 6px #8b82ff66)}}
+
+/* V7 theme-specific visual language */
+.app-logo{width:40px;height:40px;border-radius:12px;overflow:hidden;padding:0;background:transparent;box-shadow:0 4px 12px #00000012;flex:none}.app-logo img{width:100%;height:100%;display:block;object-fit:cover}
+.greeting{display:flex;align-items:center;gap:9px}.screen-icon{width:34px;height:34px;border-radius:12px;display:grid;place-items:center;background:var(--icon-bg);color:var(--icon-color);font-size:19px;box-shadow:0 5px 12px var(--button-shadow);flex:none;animation:themeIconFloat 4s ease-in-out infinite}.section-head h2{display:flex;align-items:center;gap:6px}.section-icon{width:23px;height:23px;border-radius:8px;display:inline-grid;place-items:center;background:var(--icon-bg);font-size:13px;flex:none}@keyframes themeIconFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-2px) rotate(2deg)}}
+.theme-ocean .screen-icon{border-radius:50%;background:#d8f5f6}.theme-ocean .section-icon{border-radius:50%}.theme-ocean .field-theme-icon{border-radius:50%}.theme-ocean .nav{background:linear-gradient(180deg,#f8ffff,#e8f8fa);box-shadow:0 6px 20px #168aa018}.theme-ocean .nav button.active{border-radius:50% 50% 42% 42%;background:#cceff2}.theme-ocean .quick-input,.theme-ocean .field-input{box-shadow:inset 0 0 0 2px #dff4f5}.theme-ocean .screen-icon,.theme-ocean .nav-icon,.theme-ocean .section-icon{animation:oceanBob 3.2s ease-in-out infinite}
+.theme-sunset .screen-icon,.theme-sunset .section-icon{border-radius:50%;background:#fff0cf}.theme-sunset .nav{background:linear-gradient(180deg,#fffaf3,#ffefe3);box-shadow:0 7px 20px #e36b4515}.theme-sunset .nav button.active{background:linear-gradient(135deg,#ffe3c8,#ffd5bb);border-radius:18px}.theme-sunset .quick-input,.theme-sunset .field-input{box-shadow:inset 0 0 0 2px #ffe5d4}.theme-sunset .screen-icon,.theme-sunset .nav-icon,.theme-sunset .section-icon{animation:sunBounce 3.2s ease-in-out infinite}
+.theme-forest .screen-icon,.theme-forest .section-icon{border-radius:10px 14px 10px 14px;background:#e1f0e0}.theme-forest .nav{background:linear-gradient(180deg,#fbfffa,#eaf4e9);box-shadow:0 7px 20px #4d8b6215}.theme-forest .nav button.active{background:#dcefdc;border-radius:13px 18px 13px 18px}.theme-forest .quick-input,.theme-forest .field-input{box-shadow:inset 0 0 0 2px #e0eee0}.theme-forest .screen-icon,.theme-forest .nav-icon,.theme-forest .section-icon{animation:leafSway 4s ease-in-out infinite}
+.theme-night .screen-icon,.theme-night .section-icon{border-radius:50%;background:#30364c;box-shadow:0 0 16px #8b82ff18}.theme-night .nav{background:linear-gradient(180deg,#23283a,#1c2030);box-shadow:0 8px 24px #0008}.theme-night .nav button.active{background:#353b54;border-radius:50%}.theme-night .quick-input,.theme-night .field-input{box-shadow:inset 0 0 0 2px #3a4055}.theme-night .screen-icon,.theme-night .nav-icon,.theme-night .section-icon{animation:starTwinkle 3s ease-in-out infinite}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="brand">Live your Day</div><div style="display:flex;gap:7px;align-items:center"><button class="theme-btn" onclick="openTheme()" aria-label="Choose theme"><span class="theme-glyph">✦</span></button><div class="avatar app-logo"><img src="icon.svg" alt="Path to a Brighter Day"></div></div></header>
+<div class="swipe-wrap"><div class="screens" id="screens">
+<section class="screen" data-name="Today">
+<div class="screen-mic-row"><button class="screen-mic" onclick="openVoiceTask()" aria-label="Add by voice"><span class="mic-svg"><svg viewBox="0 0 24 24"><rect x="8" y="3" width="8" height="12" rx="4"></rect><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M9 21h6"></path></svg></span> Add by voice</button></div><div class="greeting"><span class="screen-icon" id="screenIcon0">🏠</span><span id="greeting"></span></div><div class="date" id="date"></div>
+<div class="focus"><div class="label">Today's Focus</div><div class="focus-row"><div class="focus-text" id="focus"></div><button class="small" onclick="editFocus()">✎</button><button class="small" onclick="openVoiceFocus()" aria-label="Set focus by voice"><span class="mic-svg"><svg viewBox="0 0 24 24"><rect x="8" y="3" width="8" height="12" rx="4"></rect><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M9 21h6"></path></svg></span></button></div></div>
+<div class="progress"><b id="pct">0%</b><div class="bar"><div class="fill" id="fill"></div></div><span id="doneCount" style="font-size:12px;color:var(--muted)"></span></div>
+<div class="section-head"><h2><span class="section-icon">✦</span><span>Today's Tasks</span></h2><button onclick="openSheet('task')">+ Add</button></div><div class="list" id="todayTasks"></div>
+<div class="section-head"><h2><span class="section-icon">✦</span><span>Habits</span></h2><button onclick="go(2)">See all</button></div><div class="list" id="todayHabits"></div>
+</section>
+
+<section class="screen">
+<div class="greeting"><span class="screen-icon" id="screenIcon1">🗓️</span><span>Plan your day</span></div><div class="date">Today · Tomorrow · Upcoming</div><div class="screen-mic-row"><button class="screen-mic" onclick="openVoiceTask()">🎙 Add task by voice</button></div>
+<div class="plan-tabs"><button class="active" onclick="setPlanView('today',this)">Today</button><button onclick="setPlanView('tomorrow',this)">Tomorrow</button><button onclick="setPlanView('upcoming',this)">Upcoming</button></div><div id="planHint" class="plan-hint">Tasks scheduled for today</div>
+<div class="section-head"><h2><span class="section-icon">✦</span><span>All tasks</span></h2><button onclick="openSheet('task')">+ Add</button></div><div class="list" id="planTasks"></div>
+<div class="section-head"><h2><span class="section-icon">✦</span><span>Smart actions</span></h2></div>
+<div class="stats"><div class="stat" onclick="rollover()"><b>↪</b><span>Move unfinished to tomorrow</span></div><div class="stat" onclick="clearDone()"><b>✓</b><span>Clear completed tasks</span></div></div>
+</section>
+
+<section class="screen">
+<div class="greeting"><span class="screen-icon" id="screenIcon2">🌱</span><span>Your habits</span></div><div class="date">Small actions, repeated consistently.</div><div class="screen-mic-row"><button class="screen-mic" onclick="openVoiceHabit()">🎙 Add habit by voice</button></div>
+<div class="section-head"><h2><span class="section-icon">✦</span><span>Today</span></h2><button onclick="openSheet('habit')">+ Add habit</button></div><div class="list" id="allHabits"></div>
+<div class="section-head"><h2><span class="section-icon">✦</span><span>This week</span></h2></div><div class="habit" style="display:block"><div style="font-weight:750">Consistency</div><div class="week" id="week"></div></div>
+</section>
+
+<section class="screen">
+<div class="greeting"><span class="screen-icon" id="screenIcon3">✨</span><span>Your moments</span></div><div class="date">Capture life, not just your to-do list.</div><div class="screen-mic-row"><button class="screen-mic" onclick="openVoiceMoment()">🎙 Capture by voice</button></div>
+<div class="section-head"><h2><span class="section-icon">✦</span><span>Today</span></h2><button onclick="openSheet('moment')">+ Add moment</button></div><div class="moments" id="allMoments"></div>
+</section>
+
+<section class="screen">
+<div class="greeting"><span class="screen-icon" id="screenIcon4">📈</span><span>Your progress</span></div><div class="date">A simple view of how your day is going.</div><div class="screen-mic-row"><button class="screen-mic" onclick="openVoiceTask()">🎙 Add something by voice</button></div>
+<div class="section-head"><h2><span class="section-icon">✦</span><span>Today</span></h2></div><div class="stats" id="progressStats"></div>
+<div class="section-head"><h2><span class="section-icon">✦</span><span>Weekly pulse</span></h2></div><div class="habit"><div style="font-weight:750">Keep the momentum</div><div class="week" id="progressWeek"></div></div>
+<div class="section-head"><h2><span class="section-icon">✦</span><span>Gentle insight</span></h2></div><div class="focus"><div class="focus-text" id="insight"></div></div>
+</section>
+
+<section class="screen">
+<div class="greeting"><span class="screen-icon" id="screenIcon5">❤️</span><span>Your life</span></div><div class="date">A simple timeline of what you experienced.</div><div class="screen-mic-row"><button class="screen-mic" onclick="openVoiceMoment()">🎙 Capture a moment by voice</button></div>
+<div class="section-head"><h2><span class="section-icon">✦</span><span>Recent moments</span></h2><button onclick="openSheet('moment')">+ Capture</button></div><div class="life" id="life"></div>
+</section>
+</div></div>
+
+<div class="nav" id="nav">
+<button class="active" onclick="go(0)"><span class="nav-icon" id="navIcon0">⌂</span><span>Today</span></button><button onclick="go(1)"><span class="nav-icon" id="navIcon1">✓</span><span>Plan</span></button><button onclick="go(2)"><span class="nav-icon" id="navIcon2">↻</span><span>Habits</span></button><button onclick="go(3)"><span class="nav-icon" id="navIcon3">✦</span><span>Moments</span></button><button onclick="go(4)"><span class="nav-icon" id="navIcon4">◔</span><span>Progress</span></button><button onclick="go(5)"><span class="nav-icon" id="navIcon5">♥</span><span>Life</span></button>
+</div>
+</div>
+
+<div class="quick"><div class="quick-inner"><div class="input-wrap"><span class="field-theme-icon" id="quickIcon" aria-hidden="true">✦</span><input id="quickInput" class="quick-input" placeholder="What do you want to do?"><button class="mic" data-target="quickInput" onclick="voice(this)" aria-label="Voice input"><span class="mic-svg" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="8" y="3" width="8" height="12" rx="4"></rect><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M9 21h6"></path></svg></span></button></div><button class="go" onclick="quickAdd()">↑</button></div></div>
+
+<div class="theme-modal" id="themeModal"><div class="theme-card"><div class="grab"></div><h3>Choose your theme</h3><div class="sub">Make Live your Day feel like yours.</div><div class="themes">
+<button class="theme-option" onclick="setTheme('default')"><span class="swatch sw-default">✦</span><span><b>Calm Purple</b><small>Soft glow · gentle motion</small></span></button>
+<button class="theme-option" onclick="setTheme('ocean')"><span class="swatch sw-ocean">🐠</span><span><b>Ocean</b><small>Aquarium icons · floating bubbles</small></span></button>
+<button class="theme-option" onclick="setTheme('sunset')"><span class="swatch sw-sunset">☀</span><span><b>Sunset</b><small>Cheerful cartoon glow · playful motion</small></span></button>
+<button class="theme-option" onclick="setTheme('forest')"><span class="swatch sw-forest">🍃</span><span><b>Forest</b><small>Nature icons · leaf movement</small></span></button>
+<button class="theme-option" onclick="setTheme('night')"><span class="swatch sw-night">☾</span><span><b>Night</b><small>Moon & stars · twinkle animation</small></span></button>
+</div><button class="theme-close" onclick="closeTheme()">Done</button></div></div>
+<div class="sheet" id="sheet"><div class="sheet-card"><div class="grab"></div><h3 id="sheetTitle">Add task</h3><div class="sub" id="sheetSub">Type it or use your voice.</div><div class="field"><span class="field-theme-icon" id="fieldIcon" aria-hidden="true">✦</span><input id="fieldInput" class="field-input" placeholder="What do you want to add?"><button class="mic" data-target="fieldInput" onclick="voice(this)" aria-label="Voice input"><span class="mic-svg" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="8" y="3" width="8" height="12" rx="4"></rect><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M9 21h6"></path></svg></span></button></div><div id="extra"></div><div class="preview" id="preview"></div><div class="sheet-actions"><button class="cancel" onclick="closeSheet()">Cancel</button><button class="save" onclick="saveEntry()">Add to my day</button></div></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const KEY='live-your-day-v4';
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition||window.AndroidSpeechRecognition;
+if(!window.SpeechRecognition&&!window.webkitSpeechRecognition&&window.AndroidSpeechRecognition){ window.AndroidSpeechRecognition=window.AndroidSpeechRecognition; window.__lydRec=null; window.__lydAndroidResult=function(text){if(window.__lydRec&&window.__lydRec.onresult){window.__lydRec.onresult({resultIndex:0,results:[[{transcript:text}]]});}}; window.__lydAndroidStart=function(){if(window.__lydRec&&window.__lydRec.onstart)window.__lydRec.onstart();}; window.__lydAndroidError=function(err){if(window.__lydRec&&window.__lydRec.onerror)window.__lydRec.onerror({error:err});}; window.__lydAndroidEnd=function(){if(window.__lydRec&&window.__lydRec.onend)window.__lydRec.onend();};}
+let state=JSON.parse(localStorage.getItem(KEY)||'null')||{tasks:[{id:1,title:'Review today’s priorities',done:false,time:''},{id:2,title:'Take a short break',done:false,time:''}],habits:[{id:3,title:'Drink enough water',streak:3,done:false},{id:4,title:'Morning walk',streak:7,done:false}],moments:[],focus:'',nextId:10};
+if(window.AndroidVoice&&window.AndroidSpeechRecognition){window.AndroidSpeechRecognition=class{constructor(){window.__lydRec=this;this.lang='en-IN';this.interimResults=true;this.continuous=false;}start(){window.AndroidVoice.start();}stop(){window.AndroidVoice.stop();}};}
+let page=0,mode='task',recognition=null,planView='today';
+
+function save(){localStorage.setItem(KEY,JSON.stringify(state));render()}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function parse(s){let day='today';if(/\btomorrow\b/i.test(s))day='tomorrow';else if(/\b(upcoming|next week|later)\b/i.test(s))day='upcoming';let tm='',m=s.match(/\b(?:at\s*)?(\d{1,2})(?::(\d{2}))?\s*(am|pm)\b/i);if(m)tm=m[0].replace(/^at\s*/i,'');let title=s.replace(/\b(?:today|tomorrow|tonight)\b/ig,'').replace(/\b(?:at\s*)?(\d{1,2})(?::(\d{2}))?\s*(am|pm)\b/ig,'').replace(/\s+/g,' ').trim();return{title:title||s,time:tm,day}}
+function render(){
+ let d=new Date(),h=d.getHours(),done=state.tasks.filter(t=>t.done).length,total=state.tasks.length,pct=total?Math.round(done/total*100):0;
+ document.getElementById('greeting').textContent=(h<12?'Good morning':h<17?'Good afternoon':'Good evening')+' 👋';document.getElementById('date').textContent=d.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+ document.getElementById('focus').textContent=state.focus||'What matters most today?';document.getElementById('pct').textContent=pct+'%';document.getElementById('fill').style.width=pct+'%';document.getElementById('doneCount').textContent=`${done}/${total} done`;
+ state.tasks.forEach(t=>{if(!t.day)t.day='today'});let taskHTML=state.tasks.map(t=>`<div class="item ${t.done?'done':''}"><button class="check" onclick="toggleTask(${t.id})">${t.done?'✓':''}</button><div class="main"><div class="name">${esc(t.title)}</div><div class="meta">${t.time?'⏰ '+esc(t.time):'Today'}</div></div><div class="actions"><button class="icon" onclick="editTask(${t.id})">✎</button><button class="icon" onclick="delTask(${t.id})">×</button></div></div>`).join('')||'<div class="empty">Nothing planned yet. Add something small.</div>';
+ document.getElementById('todayTasks').innerHTML=state.tasks.filter(t=>t.day==='today').map(t=>taskHTMLForRender(t)).join('')||'<div class="empty">Nothing planned for today.</div>';renderPlanView();
+ let habitHTML=state.habits.map(x=>`<div class="habit"><div class="main"><div class="name">${esc(x.title)}</div><div class="streak">🔥 ${x.streak||0} day streak</div></div><button class="habit-check ${x.done?'done':''}" onclick="toggleHabit(${x.id})">${x.done?'✓':'○'}</button></div>`).join('')||'<div class="empty">Add a habit you want to repeat.</div>';
+ document.getElementById('todayHabits').innerHTML=habitHTML;document.getElementById('allHabits').innerHTML=habitHTML;
+ let mh=state.moments.slice().reverse().map(x=>`<div class="moment"><div class="moment-icon">${x.icon||'✨'}</div><div class="moment-title">${esc(x.title)}</div><div class="moment-time">${esc(x.time||'Today')}</div></div>`).join('')||'<div class="empty" style="grid-column:1/-1">Capture something you actually did.</div>';document.getElementById('allMoments').innerHTML=mh;
+ let habitDone=state.habits.filter(x=>x.done).length;document.getElementById('progressStats').innerHTML=`<div class="stat"><b>${done}</b><span>Tasks completed</span></div><div class="stat"><b>${habitDone}</b><span>Habits completed</span></div><div class="stat"><b>${state.moments.length}</b><span>Moments captured</span></div><div class="stat"><b>${pct}%</b><span>Day progress</span></div>`;
+ document.getElementById('insight').textContent=pct===100&&total?'You completed your planned tasks. Take a moment to enjoy that.':pct>=50?'You have good momentum. Keep the next step small.':'Start with the easiest useful task — progress builds from there.';
+ document.getElementById('life').innerHTML=state.moments.length?state.moments.slice().reverse().map(x=>`<div class="life-row"><div class="life-date">${esc(x.time||'Today')}</div><div class="life-title">${esc(x.title)}</div></div>`).join(''):'<div class="empty">Your life timeline starts with your first captured moment.</div>';
+ makeWeek('week');makeWeek('progressWeek');
+}
+function taskHTMLForRender(t){return `<div class="item ${t.done?'done':''}"><button class="check" onclick="toggleTask(${t.id})">${t.done?'✓':''}</button><div class="main"><div class="name">${esc(t.title)}</div><div class="meta">${t.time?'⏰ '+esc(t.time):'Today'}</div></div><div class="actions"><button class="icon" onclick="editTask(${t.id})">✎</button><button class="icon" onclick="delTask(${t.id})">×</button></div></div>`}function makeWeek(id){let e=document.getElementById(id);if(!e)return;let names=['M','T','W','T','F','S','S'];e.innerHTML=names.map((n,i)=>`<div class="day">${n}<div class="dot ${i<new Date().getDay()? 'on':''} ${i===((new Date().getDay()+6)%7)?'today':''}"></div></div>`).join('')}
+function toggleTask(id){let t=state.tasks.find(x=>x.id===id);t.done=!t.done;save();if(t.done)toast('Done ✨')}
+function delTask(id){if(confirm('Delete this task?')){state.tasks=state.tasks.filter(x=>x.id!==id);save()}}
+function toggleHabit(id){let h=state.habits.find(x=>x.id===id);if(!h.done){h.done=true;h.streak=(h.streak||0)+1;toast('Habit complete 🔥')}else{h.done=false;h.streak=Math.max(0,(h.streak||1)-1)}save()}
+function editFocus(){openSheet('focus',state.focus||'')}
+function editTask(id){let t=state.tasks.find(x=>x.id===id);openSheet('task',t.title);window.editing=id}
+function openSheet(m,val=''){mode=m;window.editing=null;document.getElementById('sheet').classList.add('open');document.getElementById('fieldInput').value=val;document.getElementById('sheetTitle').textContent=m==='task'?'Add a task':m==='habit'?'Add a habit':m==='moment'?'Capture a moment':'Set today\'s focus';document.getElementById('sheetSub').textContent=m==='moment'?'Something you actually did.':'Type it or use your voice.';document.getElementById('extra').innerHTML=m==='task'?'<select id="taskDay" class="field-input" style="margin-top:8px;padding:0 12px"><option value="today">Today</option><option value="tomorrow">Tomorrow</option><option value="upcoming">Upcoming</option></select>':'';document.getElementById('preview').style.display='none';setTimeout(()=>document.getElementById('fieldInput').focus(),100)}
+function closeSheet(){document.getElementById('sheet').classList.remove('open')}
+function saveEntry(){let v=document.getElementById('fieldInput').value.trim();if(!v)return;let p=parse(v);
+ if(mode==='focus'){state.focus=v;closeSheet();save();toast('Focus updated 🎯');return} if(mode==='task'){if(window.editing){let t=state.tasks.find(x=>x.id===window.editing);t.title=p.title;t.time=p.time;t.day=document.getElementById('taskDay')?.value||t.day||'today'}else state.tasks.push({id:state.nextId++,title:p.title,done:false,time:p.time,day:document.getElementById('taskDay')?.value||p.day||'today'})}
+ if(mode==='habit')state.habits.push({id:state.nextId++,title:v,streak:0,done:false});
+ if(mode==='moment')state.moments.push({id:state.nextId++,title:v,icon:'✨',time:new Date().toLocaleTimeString('en-IN',{hour:'numeric',minute:'2-digit'})});
+ closeSheet();save();toast(mode==='habit'?'Habit added 🔄':mode==='moment'?'Moment captured ❤️':'Added to your day ✨')}
+function quickAdd(){let v=document.getElementById('quickInput').value.trim();if(!v)return openSheet('task');let p=parse(v);state.tasks.push({id:state.nextId++,title:p.title,done:false,time:p.time,day:p.day||'today'});document.getElementById('quickInput').value='';save();toast('Added to your day ✨')}
+function rollover(){toast('Unfinished tasks can be carried into tomorrow')}
+function clearDone(){state.tasks=state.tasks.filter(x=>!x.done);save();toast('Completed tasks cleared')}
+function toast(s){let e=document.getElementById('toast');e.textContent=s;e.classList.add('show');clearTimeout(window._t);window._t=setTimeout(()=>e.classList.remove('show'),1700)}
+function go(n){page=n;const wrap=document.querySelector('.swipe-wrap');wrap.scrollTo({left:n*wrap.clientWidth,behavior:'smooth'});document.querySelectorAll('#nav button').forEach((b,i)=>b.classList.toggle('active',i===n));updateContextIcons();window.scrollTo({top:0,behavior:'smooth'})}
+function setPlanView(view,btn){planView=view;document.querySelectorAll('.plan-tabs button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const hint=document.getElementById('planHint');hint.textContent=view==='today'?'Tasks scheduled for today':view==='tomorrow'?'Tasks you plan to do tomorrow':'Upcoming tasks and scheduled items';renderPlanView()}
+function renderPlanView(){
+ const box=document.getElementById('planTasks'); if(!box)return;
+ if(planView==='today'){box.innerHTML=state.tasks.length?state.tasks.map(taskHTML).join(''):'<div class="empty">Nothing planned for today.</div>';return}
+ if(planView==='tomorrow'){
+   const tomorrow=state.tasks.filter(t=>t.day==='tomorrow');
+   box.innerHTML=tomorrow.length?tomorrow.map(taskHTML).join(''):'<div class="empty">No tasks for tomorrow yet.<br><br><button style="background:var(--accent);color:#fff;padding:10px 13px;border-radius:12px;font-weight:750" onclick="openSheet(\'task\')">+ Add for tomorrow</button></div>';return
+ }
+ const upcoming=state.tasks.filter(t=>t.day==='upcoming'||t.day==='tomorrow');
+ box.innerHTML=upcoming.length?upcoming.map(taskHTML).join(''):'<div class="empty">Your upcoming list is clear.<br><br><button style="background:var(--accent);color:#fff;padding:10px 13px;border-radius:12px;font-weight:750" onclick="openSheet(\'task\')">+ Add upcoming</button></div>'
+}
+function taskHTML(t){return `<div class="item ${t.done?'done':''}"><button class="check" onclick="toggleTask(${t.id})">${t.done?'✓':''}</button><div class="main"><div class="name">${esc(t.title)}</div><div class="meta">${t.time?'⏰ '+esc(t.time):t.day==='tomorrow'?'Tomorrow':t.day==='upcoming'?'Upcoming':'Today'}</div></div><div class="actions"><button class="icon" onclick="editTask(${t.id})">✎</button><button class="icon" onclick="delTask(${t.id})">×</button></div></div>`}
+
+const swipeWrap=document.querySelector('.swipe-wrap');
+swipeWrap.addEventListener('scroll',()=>{const n=Math.round(swipeWrap.scrollLeft/swipeWrap.clientWidth);if(n!==page){page=Math.max(0,Math.min(5,n));document.querySelectorAll('#nav button').forEach((b,i)=>b.classList.toggle('active',i===page));updateContextIcons();}});
+
+
+
+
+function openVoiceFocus(){openSheet('focus',state.focus||'');setTimeout(()=>document.querySelector('#sheet .mic[data-target="fieldInput"]').click(),180)}
+function openVoiceTask(){openSheet('task');setTimeout(()=>document.querySelector('#sheet .mic[data-target="fieldInput"]').click(),180)}
+function openVoiceHabit(){openSheet('habit');setTimeout(()=>document.querySelector('#sheet .mic[data-target="fieldInput"]').click(),180)}
+function openVoiceMoment(){openSheet('moment');setTimeout(()=>document.querySelector('#sheet .mic[data-target="fieldInput"]').click(),180)}
+function voice(btn){if(!SR){toast('Voice input is not supported here');return}if(recognition){recognition.stop();return}let input=document.getElementById(btn.dataset.target);recognition=new SR();recognition.lang='en-IN';recognition.interimResults=true;recognition.continuous=false;recognition.onstart=()=>{btn.classList.add('active');btn.innerHTML='<span class="mic-stop" aria-hidden="true">■</span>';toast('Listening…')};recognition.onresult=e=>{let s='';for(let i=e.resultIndex;i<e.results.length;i++)s+=e.results[i][0].transcript;input.value=s.trim();input.dispatchEvent(new Event('input',{bubbles:true}))};recognition.onerror=e=>{toast(e.error==='not-allowed'?'Allow microphone permission':'Voice input stopped');cleanup(btn)};recognition.onend=()=>cleanup(btn);try{recognition.start()}catch(e){cleanup(btn)}}
+function cleanup(btn){btn.classList.remove('active');btn.innerHTML='<span class="mic-svg" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="8" y="3" width="8" height="12" rx="4"></rect><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M9 21h6"></path></svg></span>';recognition=null}
+document.getElementById('quickInput').addEventListener('keydown',e=>{if(e.key==='Enter')quickAdd()});
+document.getElementById('fieldInput').addEventListener('input',e=>{let v=e.target.value,p=parse(v),x=document.getElementById('preview');if(v){x.style.display='block';x.innerHTML=`<strong>${esc(p.title)}</strong><small>${p.time?'⏰ '+esc(p.time):'📅 Today'} · ${mode}</small>`}else x.style.display='none'});
+document.getElementById('sheet').addEventListener('click',e=>{if(e.target.id==='sheet')closeSheet()});
+
+function openTheme(){document.getElementById('themeModal').classList.add('open')}
+function closeTheme(){document.getElementById('themeModal').classList.remove('open')}
+
+const themeVisuals={
+ default:{screen:['🌅','🗓️','🌱','✨','📈','❤️'],nav:['⌂','✓','↻','✦','◔','♥'],field:['☀','📝','🌱','✨','📊','❤️']},
+ ocean:{screen:['🐠','⭐','🐙','🐧','🪼','🐳'],nav:['🐠','⭐','🐙','🐧','🪼','🐳'],field:['🐠','⭐','🐙','🐧','🪼','🐳']},
+ sunset:{screen:['🌞','🌈','🦋','🌸','🎈','🧡'],nav:['🌞','🌈','🦋','🌸','🎈','🧡'],field:['☀️','🌈','🌱','🌸','🎈','🧡']},
+ forest:{screen:['🌳','🍄','🦊','🦋','🌲','🦌'],nav:['🌳','🍄','🦊','🦋','🌲','🦌'],field:['🌿','🍄','🌱','🦋','🌲','🦌']},
+ night:{screen:['🌙','🔭','🦉','🌌','⭐','🪐'],nav:['🌙','🔭','🦉','🌌','⭐','🪐'],field:['☾','🔭','🦉','🌌','⭐','🪐']}
+};
+function applyThemeVisuals(name){const v=themeVisuals[name]||themeVisuals.default;v.screen.forEach((x,i)=>{const e=document.getElementById('screenIcon'+i);if(e)e.textContent=x});v.nav.forEach((x,i)=>{const e=document.getElementById('navIcon'+i);if(e)e.textContent=x});const qi=document.getElementById('quickIcon');if(qi)qi.textContent=v.field[Math.min(page,5)];const fi=document.getElementById('fieldIcon');if(fi)fi.textContent=v.field[Math.min(page,5)];document.querySelectorAll('.section-icon').forEach((e,i)=>{e.textContent=v.field[i%v.field.length]})}
+function updateContextIcons(){const name=localStorage.getItem('live-your-day-theme')||'default';const v=themeVisuals[name]||themeVisuals.default;const x=v.field[Math.min(page,5)];const qi=document.getElementById('quickIcon');const fi=document.getElementById('fieldIcon');if(qi)qi.textContent=x;if(fi)fi.textContent=x}
+function setTheme(name){document.body.classList.remove('theme-ocean','theme-sunset','theme-forest','theme-night');if(name!=='default')document.body.classList.add('theme-'+name);localStorage.setItem('live-your-day-theme',name);applyThemeVisuals(name);toast('Theme updated ✨');closeTheme()}
+(function(){const t=localStorage.getItem('live-your-day-theme')||'default';if(t!=='default')document.body.classList.add('theme-'+t);applyThemeVisuals(t)})();
+render();
+</script>
+</body>
+</html>
